@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from . import main
-from flask import jsonify, request, make_response, session
-from app.application import db, mongo
-from bson import json_util, ObjectId
-from datetime import timedelta
+from flask import jsonify, request, session
+from app.application import mongo
+from bson import json_util
 
 import logging
 import uuid
@@ -20,15 +19,6 @@ def check_user():
 @main.route('/')  # 注意這裡是 main.route 而不再是 app.route
 @main.route('/index')
 def index():
-    data = mongo.db.ttcc1.find().limit(5)
-    tmp = list(data)
-    page_sanitized = json.loads(json_util.dumps(tmp))
     return jsonify({
-        'data': page_sanitized
+        'data': "Hello"
     })
-
-
-@main.route('/getcookie')
-def get_cookie():
-    user_id = session.get('user_id')
-    return user_id

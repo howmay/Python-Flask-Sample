@@ -3,21 +3,18 @@
 #from config import Config
 
 from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
 from flask_pymongo import PyMongo
 
 import os
 
-db = SQLAlchemy()
 mongo = PyMongo()
 
 
 def create_app(config_filename):
     app = Flask(__name__)
     app.config.from_object(config_filename)
-    app.config["MONGO_URI"] = "mongodb://10.128.80.189:27017/ttc"
+    app.config["MONGO_URI"] = "mongodb://localhost:27017/test"
 
-    db.init_app(app)
     mongo.init_app(app)
 
     from .main import main as main_blueprint
