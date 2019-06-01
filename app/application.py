@@ -16,8 +16,8 @@ def create_app(config_filename):
 
     mongo.init_app(app)
 
-    from .main import main as main_blueprint
-    app.register_blueprint(main_blueprint)
+    from .Product import Product as product_blueprint
+    app.register_blueprint(product_blueprint)
 
     app.config['SECRET_KEY'] = os.urandom(24)
 
