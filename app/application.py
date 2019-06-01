@@ -13,7 +13,6 @@ mongo = PyMongo()
 def create_app(config_filename):
     app = Flask(__name__)
     app.config.from_object(config_filename)
-    app.config["MONGO_URI"] = "mongodb://localhost:27017/test"
 
     mongo.init_app(app)
 

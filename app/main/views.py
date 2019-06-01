@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from . import main
-from flask import jsonify, request, session
-from app.application import mongo
+from flask import jsonify, request, session, logging
+from app.database import MongoDB
 from bson import json_util
 
 import logging
@@ -21,4 +21,13 @@ def check_user():
 def index():
     return jsonify({
         'data': "Hello"
+    })
+
+
+@main.route('/test')
+def testMongo():
+    if MongoDB.Insert('test', {'test': '1'}) == False:
+        logging.error("Can't Insert Data to Mongo. ")
+    return jsonify({
+        'status': 'OK'
     })
